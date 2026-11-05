@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inventaire sauces Colona</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1EC;--card:#FFFFFF;--ink:#1F1A16;--muted:#6E655D;--line:#E4DDD3;--field:#FFF7DA;--red:#D8432E;--wa:#1FA855;--wad:#178A45;
+ color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15120F;--card:#211C18;--ink:#F3EEE8;--muted:#B0A69C;--line:#3A322B;--field:#2E2A1B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15120F;--card:#211C18;--ink:#F3EEE8;--muted:#B0A69C;--line:#3A322B;--field:#2E2A1B;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.4 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.w{max-width:760px;margin:0 auto;padding:22px 14px 120px}
+h1{font:800 34px/1 "Bricolage Grotesque",Figtree,sans-serif;margin:0}
+h1 span{color:var(--red)}
+.sub{color:var(--muted);margin:6px 0 16px;font-size:17px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+.who label{font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.who input{font:inherit;font-size:18px;border:2px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--bg);color:var(--ink)}
+.help{font-size:15px;color:var(--muted);margin:12px 2px}
+.help b{color:var(--ink)}
+details.cat{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:10px 0;overflow:hidden}
+details.cat summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px;font:800 22px "Bricolage Grotesque",sans-serif}
+details.cat summary::-webkit-details-marker{display:none}
+.dot{width:14px;height:14px;border-radius:5px;background:var(--fc);flex:none}
+.prog{margin-left:auto;font:700 14px Figtree,sans-serif;color:var(--muted);background:var(--bg);border-radius:99px;padding:4px 10px;white-space:nowrap}
+.prog.full{background:var(--wa);color:#fff}
+details.cat summary::after{content:"▾";color:var(--muted);font-size:18px}
+details.cat[open] summary::after{content:"▴"}
+.cond{font-size:14px;color:var(--muted);padding:0 14px 10px}
+.it{border-top:1px solid var(--line);padding:12px 14px}
+.it.done{background:color-mix(in srgb,var(--wa) 8%,var(--card))}
+.hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.hd b{font-size:19px}
+.hd small{color:var(--muted);font-size:13px}
+.hd .tot{font:800 20px "Bricolage Grotesque",sans-serif;white-space:nowrap}
+.hd .tot.z{color:var(--muted);font-weight:600;font-size:15px}
+.f{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.f label{display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:center}
+.f input{font:800 24px "Bricolage Grotesque",sans-serif;width:100%;height:50px;text-align:center;border:2px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink);padding:0}
+.f input:disabled{opacity:.3}
+input:focus,button:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.send{position:fixed;left:0;right:0;bottom:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
+.send .in{max-width:760px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.send .info{flex:1;font-size:15px;color:var(--muted)}
+.send .info b{color:var(--ink);font-size:18px;display:block}
+.wa{display:inline-flex;align-items:center;gap:8px;font:700 18px Figtree,sans-serif;background:var(--wa);color:#fff;text-decoration:none;border-radius:14px;padding:14px 18px;border:0;cursor:pointer}
+.wa:hover{background:var(--wad)}
+.wa svg{width:22px;height:22px;fill:#fff}
+.sm{font:inherit;font-weight:700;font-size:15px;border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:12px;padding:10px 12px;cursor:pointer}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
+@media (max-width:480px){.who{grid-template-columns:1fr}.f input{height:48px;font-size:22px}.send .info{font-size:13px}.wa{padding:13px 14px;font-size:17px}}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Inventaire sauces <span>Colona</span></h1>
+  <p class="sub">Compte le stock, référence par référence, puis envoie-le à Monir sur WhatsApp en 1 clic.</p>
+  <div id="recv" hidden style="background:#E3F5EA;border:2px solid var(--wa);border-radius:16px;padding:14px;margin:0 0 14px;color:#173B25"></div>
+
+  <div class="who">
+    <label>Ton prénom<input id="nom" autocomplete="name" placeholder="ex. Karim"></label>
+    <label>WhatsApp de Monir<input id="tel" inputmode="tel" autocomplete="off" placeholder="ex. 06 12 34 56 78"></label>
+  </div>
+  <p class="help">Pour chaque sauce, remplis ce que tu vois : <b>palettes, couches, colis et unités en vrac</b>. Le total en unités se calcule tout seul. Laisse vide ce qui est à 0. Tout reste enregistré si tu fermes la page.</p>
+
+  <div id="list"></div>
+
+  <div class="tools">
+    <button class="sm" id="fh">📎 Envoyer en fichier HTML</button>
+    <button class="sm" id="tx">💬 Envoyer en texte détaillé</button>
+    <button class="sm" id="cp">Copier le message</button>
+    <button class="sm" id="rz">Nouvel inventaire (tout vider)</button>
+  </div>
+  <textarea id="msgbox" hidden readonly style="width:100%;min-height:220px;margin-top:10px;font:15px/1.4 ui-monospace,monospace;border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--card);color:var(--ink)" aria-label="Message à copier"></textarea>
+  <details class="cat" id="fb" open style="--fc:#D8432E"><summary><span class="dot"></span>🆘 Ça ne s’envoie pas ? (iPhone)</summary><div class="cond" style="font-size:16px">1. Appuie <b>longuement</b> dans le cadre ci-dessous → <b>Tout sélectionner</b> → <b>Copier</b>.<br>2. Ouvre WhatsApp, va dans la conversation avec Monir et <b>colle</b>. Le lien part avec tout l’inventaire.</div><textarea id="fbt" readonly style="width:calc(100% - 28px);margin:0 14px 14px;min-height:120px;font:15px/1.4 ui-monospace,monospace;border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--field);color:var(--ink)" aria-label="Message avec le lien à copier" onclick="this.select()"></textarea></details>
+</div>
+
+<div class="send"><div class="in">
+  <div class="info" id="info"></div>
+  <a class="wa" id="wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Envoyer le lien</a>
+</div></div>
+
+<script>
+const IT=[{"r":"COL56","sf":"SF1558","n":"Chili Thai","f":"Tube 950 ml"},{"r":"COL55","sf":"SF1546","n":"Pitta","f":"Tube 950 ml"},{"r":"2478","sf":"SF1559","n":"Hannibal","f":"Tube 950 ml"},{"r":"COL52","sf":"SF1518","n":"Andalouse","f":"Tube 950 ml"},{"r":"COL53","sf":"SF1519","n":"Samourai","f":"Tube 950 ml"},{"r":"COL50","sf":"SF1531","n":"Ketchup 35%","f":"Tube 950 ml"},{"r":"COL54","sf":"SF1517","n":"Americaine","f":"Tube 950 ml"},{"r":"COL76","sf":"SF1516","n":"Cocktail","f":"Tube 950 ml"},{"r":"2479","sf":"SF1563","n":"Marocaine","f":"Tube 950 ml"},{"r":"COL31","sf":"SF3059","n":"Hannibal","f":"Bidon 3 L"},{"r":"COL37","sf":"SF3067","n":"Big Burger","f":"Bidon 3 L"},{"r":"2463","sf":"SF3064","n":"Algerienne","f":"Bidon 3 L"},{"r":"COL43","sf":"SF3046","n":"Pitta","f":"Bidon 3 L"},{"r":"COL29","sf":"SF3018","n":"Andalouse","f":"Bidon 3 L"},{"r":"COL40","sf":"SF3022","n":"Poivre","f":"Bidon 3 L"},{"r":"COL32","sf":"SF3019","n":"Samourai","f":"Bidon 3 L"},{"r":"COL28","sf":"SF3017","n":"Americaine","f":"Bidon 3 L"},{"r":"COL30","sf":"SF3053","n":"Barbecue Smoky","f":"Bidon 3 L"},{"r":"COL33","sf":"SF3056","n":"Brazil","f":"Bidon 3 L"},{"r":"COL38","sf":"SF3021","n":"Bourgy Burger","f":"Bidon 3 L"},{"r":"COL48","sf":"SF3044","n":"Barbecue Orange","f":"Bidon 3 L"},{"r":"COL49","sf":"SF3016","n":"Cocktail","f":"Bidon 3 L"},{"r":"COL42","sf":"SF3015","n":"Curry","f":"Bidon 3 L"},{"r":"COL20","sf":"SF9546","n":"Pitta","f":"Seau 10 L"},{"r":"COL19","sf":"SF9519","n":"Samourai","f":"Seau 10 L"},{"r":"COL46","sf":"SF9564","n":"Algerienne","f":"Seau 10 L"},{"r":"COL16","sf":"SF9518","n":"Andalouse","f":"Seau 10 L"},{"r":"COL18","sf":"SF9559","n":"Hannibal","f":"Seau 10 L"},{"r":"COL24","sf":"SF9522","n":"Poivre","f":"Seau 10 L"},{"r":"COL15","sf":"SF9517","n":"Americaine","f":"Seau 10 L"},{"r":"COL17","sf":"SF9516","n":"Cocktail","f":"Seau 10 L"},{"r":"COL23","sf":"SF9521","n":"Bourgy Burger","f":"Seau 10 L"},{"r":"COL4","sf":"SF4508","n":"Mayo Dres","f":"BIB 2×4 L"},{"r":"COL6","sf":"SF4546","n":"Pitta","f":"BIB 2×4 L"},{"r":"COL9","sf":"SF4564","n":"Algerienne","f":"BIB 2×4 L"},{"r":"COL14","sf":"SF4567","n":"Big Burger","f":"BIB 2×4 L"},{"r":"COL5","sf":"SF4519","n":"Samourai","f":"BIB 2×4 L"},{"r":"COL3","sf":"SF4559","n":"Hannibal","f":"BIB 2×4 L"},{"r":"COL2","sf":"SF4518","n":"Andalouse","f":"BIB 2×4 L"},{"r":"COL7","sf":"SF4531","n":"Ketchup","f":"BIB 2×4 L"},{"r":"COL12","sf":"SF4522","n":"Poivre","f":"BIB 2×4 L"},{"r":"COL8","sf":"SF4553N","n":"Barbecue","f":"BIB 2×4 L"},{"r":"COL1","sf":"SF4517","n":"Americaine","f":"BIB 2×4 L"},{"r":"COL11","sf":"SF4516","n":"Cocktail","f":"BIB 2×4 L"},{"r":"COL59","sf":"SF00001","n":"Mayonnaise","f":"Dosettes 500×10 ml"},{"r":"BIGCOLST","sf":"SF00067","n":"Big Burger","f":"Dosettes 500×10 ml"},{"r":"COL62","sf":"SF00064","n":"Algerienne","f":"Dosettes 500×10 ml"},{"r":"COL63","sf":"SF00031","n":"Ketchup","f":"Dosettes 500×10 ml"},{"r":"COL58","sf":"SF00019","n":"Samourai","f":"Dosettes 500×10 ml"},{"r":"COL71","sf":"SF00046","n":"Pitta","f":"Dosettes 500×10 ml"},{"r":"COL57","sf":"SF00018","n":"Andalouse","f":"Dosettes 500×10 ml"},{"r":"COL60","sf":"SF00053","n":"Barbecue","f":"Dosettes 500×10 ml"},{"r":"BBQ800","sf":"","n":"Sweet Barbecue","f":"Flacon 800 ml"},{"r":"COL47","sf":"SF5029","n":"Sauce Salade","f":"Bidon 5 L"},{"r":"CROUSTY","sf":"","n":"Sauce Crousty","f":"Sauce crousty"}];
+for(let i=IT.length-1;i>=0;i--)if(IT[i].r==='CROUSTY'||IT[i].r==='COL42')IT.splice(i,1);
+const CAT=[
+ ['Tube 950 ml','Tubes 1 L','tubes',{u:12,c:10,p:40},'#D8432E'],
+ ['Bidon 3 L','Bidons 3 L','bidons',{u:3,c:11,p:55},'#EE7A22'],
+ ['Seau 10 L','Seaux 10 L','seaux',{u:1,c:12,p:48},'#E8A317'],
+ ['BIB 2×4 L','BIB 2 × 4 L','cartons',{u:1,c:12,p:72},'#1F8A8A'],
+ ['Dosettes 500×10 ml','Dosettes 500 × 10 ml','cartons',{u:1,c:14,p:84},'#7B5CC4'],
+ ['Flacon 800 ml','Flacons 800 ml','flacons',{u:6,c:null,p:null},'#8A5A3C'],
+ ['Bidon 5 L','Bidons 5 L','bidons',{u:4,c:null,p:null},'#3E8E4E'],
+ ['Sauce crousty','Sauce crousty','unités',{u:1,c:null,p:null},'#C2185B']
+];
+const $=id=>document.getElementById(id);
+const LS='colona-inventaire-v1';
+let st={};try{st=JSON.parse(localStorage.getItem(LS)||'{}')}catch(e){}
+st.v=st.v||{};st.open=st.open||{};
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}};
+$('nom').value=st.nom||'';$('tel').value=st.tel||'';
+const num=v=>{if(v==null||String(v).trim()==='')return 0;const n=+String(v).replace(',','.');return isNaN(n)?0:n};
+const has=r=>{const x=st.v[r]||{};return ['p','k','c','u'].some(f=>x[f]!=null&&String(x[f]).trim()!=='')};
+function total(it,k){const x=st.v[it.r]||{};return num(x.p)*(k.p||0)*k.u+num(x.k)*(k.c||0)*k.u+num(x.c)*k.u+num(x.u)}
+function build(){
+  let h='';
+  CAT.forEach(([f,t,w,k,col])=>{const its=IT.filter(i=>i.f===f);if(!its.length)return;
+    h+=`<details class="cat" data-f="${f}" style="--fc:${col}"${st.open[f]?' open':''}><summary><span class="dot"></span>${t}<span class="prog" data-p="${f}"></span></summary>
+    <div class="cond">1 colis = ${k.u} ${w}${k.c?` · 1 couche = ${k.c} colis`:''}${k.p?` · 1 palette = ${k.p} colis`:''}</div>`;
+    its.forEach(it=>{const x=st.v[it.r]||{};const inp=(fl,lab,dis)=>`<label>${lab}<input inputmode="decimal" autocomplete="off" data-r="${it.r}" data-k="${fl}" value="${x[fl]??''}"${dis?' disabled':''} aria-label="${lab} ${it.n} ${t}"></label>`;
+      h+=`<div class="it" data-it="${it.r}"><div class="hd"><div><b>${it.n}</b> <small>${it.sf||it.r}</small></div><span class="tot" data-t="${it.r}"></span></div>
+      <div class="f">${inp('p','Palettes',!k.p)}${inp('k','Couches',!k.c)}${inp('c','Colis')}${inp('u','Unités')}</div></div>`});
+    h+='</details>'});
+  $('list').innerHTML=h;
+}
+function refresh(){
+  let done=0;
+  CAT.forEach(([f,t,w,k])=>{const its=IT.filter(i=>i.f===f);const d=its.filter(i=>has(i.r)).length;done+=d;
+    const pg=document.querySelector(`[data-p="${CSS.escape(f)}"]`);if(pg){pg.textContent=`${d} / ${its.length}`;pg.classList.toggle('full',d===its.length)}
+    its.forEach(it=>{const el=document.querySelector(`[data-t="${CSS.escape(it.r)}"]`),row=document.querySelector(`[data-it="${CSS.escape(it.r)}"]`);
+      if(has(it.r)){el.textContent=`= ${total(it,k).toLocaleString('fr-FR')} ${w}`;el.classList.remove('z');row.classList.add('done')}else{el.textContent='pas compté';el.classList.add('z');row.classList.remove('done')}})});
+  $('info').innerHTML=`<b>${done} / ${IT.length} sauces comptées</b>${done<IT.length?'Les sauces vides partent comme « pas compté ».':'Inventaire complet ✔'}`;
+  const msg=message();const tel=String(st.tel||'').replace(/\D/g,'').replace(/^0(\d{9})$/,'33$1');
+  $('wa').href=`https://wa.me/${tel}?text=${encodeURIComponent(linkMsg())}`;const fb=$('fbt');if(fb)fb.value=linkMsg();
+}
+function message(){
+  const d=new Date();let m=`📦 *INVENTAIRE SAUCES COLONA*\n${d.toLocaleDateString('fr-FR')} à ${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}${st.nom?` · par ${st.nom}`:''}\n`;
+  const miss=[];
+  CAT.forEach(([f,t,w,k])=>{const its=IT.filter(i=>i.f===f);const ok=its.filter(i=>has(i.r));its.filter(i=>!has(i.r)).forEach(i=>miss.push(`${i.n} (${t})`));if(!ok.length)return;
+    m+=`\n*${t}*\n`;
+    ok.forEach(it=>{const x=st.v[it.r]||{};const parts=[];if(num(x.p))parts.push(`${num(x.p)} pal`);if(num(x.k))parts.push(`${num(x.k)} couche${num(x.k)>1?'s':''}`);if(num(x.c))parts.push(`${num(x.c)} colis`);if(num(x.u))parts.push(`${num(x.u)} u`);
+      m+=`• ${it.r} ${it.n} : *${total(it,k).toLocaleString('fr-FR')} ${w}*${parts.length>1||(parts.length&&!num(x.u))?` (${parts.join(' + ')})`:''}\n`})});
+  if(miss.length)m+=`\n⚠ Pas compté : ${miss.join(', ')}\n`;
+  return m;
+}
+$('list').addEventListener('input',e=>{const i=e.target;if(!i.dataset.r)return;(st.v[i.dataset.r]=st.v[i.dataset.r]||{})[i.dataset.k]=i.value;save();refresh()});
+$('list').addEventListener('toggle',e=>{const d=e.target;if(d.dataset&&d.dataset.f){st.open[d.dataset.f]=d.open;save()}},true);
+$('nom').addEventListener('input',e=>{st.nom=e.target.value;save();refresh()});
+$('tel').addEventListener('input',e=>{st.tel=e.target.value;save();refresh()});
+$('cp').onclick=async()=>{const b=$('cp');const msg=message();let ok=false;try{await navigator.clipboard.writeText(msg);ok=true}catch(e){}if(!ok){const ta=$('msgbox');ta.hidden=false;ta.value=msg;ta.focus();ta.select();try{ok=document.execCommand('copy')}catch(e){}}b.textContent=ok?'Copié ✔ → colle-le dans WhatsApp':'Sélectionne le texte et copie-le';setTimeout(()=>b.textContent='Copier le message',2500)};
+const sendFile=async()=>{
+  const name=`inventaire_colona_${new Date().toISOString().slice(0,10)}.html`;const file=new File([report()],name,{type:'text/html'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Inventaire sauces Colona'});return}}catch(err){if(err&&err.name==='AbortError')return}
+  try{const dl=await (window.claude?.use?.('downloads')||Promise.resolve(null)).catch(()=>null);if(dl){await dl.save({filename:name,data:file})}else{const u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove()}}catch(_){}
+  $('info').innerHTML='<b>Fichier HTML téléchargé</b>Ouvre WhatsApp → trombone → Document → choisis le fichier.';
+};
+function waSend(txt){
+  const tel=String(st.tel||'').replace(/\D/g,'').replace(/^0(\d{9})$/,'33$1');const t=encodeURIComponent(txt);
+  const q=`${tel?`phone=${tel}&`:''}text=${t}`;const app=`whatsapp://send?${q}`,web=`https://api.whatsapp.com/send?${q}`;
+  let left=false;const h=()=>{if(document.hidden)left=true};document.addEventListener('visibilitychange',h);
+  try{window.location.href=app}catch(_){}
+  setTimeout(()=>{document.removeEventListener('visibilitychange',h);if(left)return;let w=null;try{w=window.open(web,'_blank')}catch(_){}if(!w){try{window.top.location.href=web}catch(_){window.location.href=web}}},1200);
+}
+const PREV='https://claude.ai/artifact/61Ar6gSo1b7knB9HenqpsE',INV=(/^https?:$/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname))?location.href.split('#')[0]:'https://claude.ai/artifact/RbjNxYYXz8j5ci7QayDgcK';
+const ri=v=>Math.max(0,Math.round(num(v)));
+function invHash(){const d=new Date(),p=n=>String(n).padStart(2,'0');const nom=(st.nom||'x').normalize('NFD').replace(/[^A-Za-z0-9]/g,'').slice(0,20)||'x';
+  let h=`inv2-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}-${nom}`;
+  CAT.forEach(([f,t,w,k])=>IT.filter(i=>i.f===f&&has(i.r)).forEach(it=>{const x=st.v[it.r]||{};h+=`-${it.r}-${ri(x.p)}-${ri(x.k)}-${ri(x.c)}-${ri(x.u)}`}));return h}
+function linkMsg(){const n=IT.filter(i=>has(i.r)).length;const d=new Date();return `📦 Inventaire sauces Colona du ${d.toLocaleDateString('fr-FR')} à ${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}${st.nom?' par '+st.nom:''} : ${n}/${IT.length} sauces comptées.\n👉 ${INV}#${invHash()}`}
+$('wa').addEventListener('click',()=>{refresh()});
+$('fh').addEventListener('click',e=>{e.preventDefault();sendFile()});
+$('tx').addEventListener('click',e=>{e.preventDefault();waSend(message())});
+$('rz').onclick=()=>{if(confirm('Effacer tout l’inventaire pour en commencer un nouveau ?')){st.v={};save();build();refresh()}};
+function report(){
+  const d=new Date(),items=[];let rows='';
+  CAT.forEach(([f,t,w,k])=>{const its=IT.filter(i=>i.f===f);rows+=`<tr class="g"><td colspan="4">${t}</td></tr>`;
+    its.forEach(it=>{const x=st.v[it.r]||{};const ok=has(it.r);const tot=ok?total(it,k):null;
+      items.push({r:it.r,sf:it.sf,n:it.n,f,unit:w,total:tot,p:num(x.p),k:num(x.k),c:num(x.c),u:num(x.u)});
+      const parts=[];if(num(x.p))parts.push(num(x.p)+' pal');if(num(x.k))parts.push(num(x.k)+' couche(s)');if(num(x.c))parts.push(num(x.c)+' colis');if(num(x.u))parts.push(num(x.u)+' u');
+      rows+=`<tr${ok?'':' class="m"'}><td>${it.r}<br><small>${it.sf}</small></td><td>${it.n}</td><td class="n"><b>${ok?tot.toLocaleString('fr-FR')+' '+w:'pas compté'}</b></td><td>${parts.join(' + ')}</td></tr>`})});
+  const data={type:'inventaire-colona',v:1,date:d.toISOString(),nom:st.nom||'',items};
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventaire sauces Colona ${d.toLocaleDateString('fr-FR')}</title><style>body{font:16px/1.4 system-ui,sans-serif;margin:0;padding:16px;color:#1F1A16;background:#fff}h1{font-size:24px;margin:0}p{color:#6E655D;margin:4px 0 12px}table{width:100%;border-collapse:collapse}td{padding:7px 8px;border-bottom:1px solid #E4DDD3;vertical-align:top}td.n{text-align:right;white-space:nowrap}tr.g td{background:#F4F1EC;font-weight:700;font-size:17px}tr.m td{color:#B0A69C}small{color:#6E655D}</style></head><body><h1>📦 Inventaire sauces Colona</h1><p>${d.toLocaleDateString('fr-FR')} à ${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}${st.nom?' · par '+st.nom:''} · à importer dans le Prévisionnel Colona (bouton « Importer inventaire »)</p><table>${rows}</table><script type="application/json" id="inv-data">${JSON.stringify(data).replace(/</g,'\\u003c')}<\/script></body></html>`;
+}
+const oldFileShare=async()=>{const b=$('fh');const lab='📎 Envoyer en fichier (HTML)';const name=`inventaire_colona_${new Date().toISOString().slice(0,10)}.html`;
+  const file=new File([report()],name,{type:'text/html'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Inventaire sauces Colona',text:message()});b.textContent='Envoyé ✔'}
+    else{const dl=await window.claude?.use?.('downloads').catch(()=>null);if(dl){await dl.save({filename:name,data:file})}else{const u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove()}b.textContent='Fichier téléchargé → envoie-le sur WhatsApp'}}
+  catch(e){if(e&&e.name==='AbortError'){b.textContent=lab;return}b.textContent='Impossible, utilise Copier'}setTimeout(()=>b.textContent=lab,3000)};
+function loadFromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h.startsWith('inv2-'))return false;
+  const t=h.split('-');const dt=t[1]||'',tm=t[2]||'',nom=t[3]||'x';const v={};
+  for(let i=4;i+4<t.length;i+=5){const r=t[i];if(!IT.some(x=>x.r===r))continue;const o={};['p','k','c','u'].forEach((f,j)=>{const n=+t[i+1+j];if(n)o[f]=String(n)});if(!Object.keys(o).length)o.u='0';v[r]=o}
+  st.v=v;save();build();refresh();
+  const by=nom!=='x'?nom:'le magasinier';let ph=`inv-${dt}-${tm}-${nom}`;CAT.forEach(([f,tt,w,k])=>IT.filter(i=>i.f===f&&v[i.r]).forEach(it=>{ph+=`-${it.r}-${Math.round(total(it,k))}`}));
+  const b=$('recv');b.hidden=false;b.innerHTML=`<b style="font-size:19px">📲 Inventaire reçu de ${by}</b><br>Du ${dt.slice(6,8)}/${dt.slice(4,6)}/${dt.slice(0,4)} à ${tm.slice(0,2)}h${tm.slice(2)} · ${Object.keys(v).length} sauces comptées. Les cases ci-dessous sont remplies avec ses chiffres.<div style="margin-top:10px"><a class="wa" style="background:#1B2230" href="${PREV}#${ph}" target="_top">📥 Importer dans le Prévisionnel</a></div>`;
+  return true}
+build();refresh();loadFromHash();window.addEventListener('hashchange',loadFromHash);
+</script>
+</body>
+</html>
