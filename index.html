@@ -103,6 +103,7 @@ const LS='colona-inventaire-v1';
 let st={};try{st=JSON.parse(localStorage.getItem(LS)||'{}')}catch(e){}
 st.v=st.v||{};st.open=st.open||{};
 const save=()=>{try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}};
+if(!st.tel)st.tel='06 86 99 93 77';
 $('nom').value=st.nom||'';$('tel').value=st.tel||'';
 const num=v=>{if(v==null||String(v).trim()==='')return 0;const n=+String(v).replace(',','.');return isNaN(n)?0:n};
 const has=r=>{const x=st.v[r]||{};return ['p','k','c','u'].some(f=>x[f]!=null&&String(x[f]).trim()!=='')};
