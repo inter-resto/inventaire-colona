@@ -76,6 +76,8 @@ input:focus,button:focus-visible,summary:focus-visible{outline:3px solid var(--r
   <div id="list"></div>
 
   <div class="tools">
+    <button class="sm" id="cl" style="border-color:var(--wa);color:var(--wad)">🔗 Copier le lien</button>
+    <button class="sm" id="xl" style="border-color:#1D6F42;color:#1D6F42">📊 Extraction Excel</button>
     <button class="sm" id="fh">📎 Envoyer en fichier HTML</button>
     <button class="sm" id="tx">💬 Envoyer en texte détaillé</button>
     <button class="sm" id="cp">Copier le message</button>
@@ -90,6 +92,7 @@ input:focus,button:focus-visible,summary:focus-visible{outline:3px solid var(--r
   <a class="wa" id="wa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Envoyer le lien</a>
 </div></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 const IT=[{"r":"COL56","sf":"SF1558","n":"Chili Thai","f":"Tube 950 ml"},{"r":"COL55","sf":"SF1546","n":"Pitta","f":"Tube 950 ml"},{"r":"2478","sf":"SF1559","n":"Hannibal","f":"Tube 950 ml"},{"r":"COL52","sf":"SF1518","n":"Andalouse","f":"Tube 950 ml"},{"r":"COL53","sf":"SF1519","n":"Samourai","f":"Tube 950 ml"},{"r":"COL50","sf":"SF1531","n":"Ketchup 35%","f":"Tube 950 ml"},{"r":"COL54","sf":"SF1517","n":"Americaine","f":"Tube 950 ml"},{"r":"COL76","sf":"SF1516","n":"Cocktail","f":"Tube 950 ml"},{"r":"2479","sf":"SF1563","n":"Marocaine","f":"Tube 950 ml"},{"r":"COL31","sf":"SF3059","n":"Hannibal","f":"Bidon 3 L"},{"r":"COL37","sf":"SF3067","n":"Big Burger","f":"Bidon 3 L"},{"r":"2463","sf":"SF3064","n":"Algerienne","f":"Bidon 3 L"},{"r":"COL43","sf":"SF3046","n":"Pitta","f":"Bidon 3 L"},{"r":"COL29","sf":"SF3018","n":"Andalouse","f":"Bidon 3 L"},{"r":"COL40","sf":"SF3022","n":"Poivre","f":"Bidon 3 L"},{"r":"COL32","sf":"SF3019","n":"Samourai","f":"Bidon 3 L"},{"r":"COL28","sf":"SF3017","n":"Americaine","f":"Bidon 3 L"},{"r":"COL30","sf":"SF3053","n":"Barbecue Smoky","f":"Bidon 3 L"},{"r":"COL33","sf":"SF3056","n":"Brazil","f":"Bidon 3 L"},{"r":"COL38","sf":"SF3021","n":"Bourgy Burger","f":"Bidon 3 L"},{"r":"COL48","sf":"SF3044","n":"Barbecue Orange","f":"Bidon 3 L"},{"r":"COL49","sf":"SF3016","n":"Cocktail","f":"Bidon 3 L"},{"r":"COL42","sf":"SF3015","n":"Curry","f":"Bidon 3 L"},{"r":"COL20","sf":"SF9546","n":"Pitta","f":"Seau 10 L"},{"r":"COL19","sf":"SF9519","n":"Samourai","f":"Seau 10 L"},{"r":"COL46","sf":"SF9564","n":"Algerienne","f":"Seau 10 L"},{"r":"COL16","sf":"SF9518","n":"Andalouse","f":"Seau 10 L"},{"r":"COL18","sf":"SF9559","n":"Hannibal","f":"Seau 10 L"},{"r":"COL24","sf":"SF9522","n":"Poivre","f":"Seau 10 L"},{"r":"COL15","sf":"SF9517","n":"Americaine","f":"Seau 10 L"},{"r":"COL17","sf":"SF9516","n":"Cocktail","f":"Seau 10 L"},{"r":"COL23","sf":"SF9521","n":"Bourgy Burger","f":"Seau 10 L"},{"r":"COL4","sf":"SF4508","n":"Mayo Dres","f":"BIB 2×4 L"},{"r":"COL6","sf":"SF4546","n":"Pitta","f":"BIB 2×4 L"},{"r":"COL9","sf":"SF4564","n":"Algerienne","f":"BIB 2×4 L"},{"r":"COL14","sf":"SF4567","n":"Big Burger","f":"BIB 2×4 L"},{"r":"COL5","sf":"SF4519","n":"Samourai","f":"BIB 2×4 L"},{"r":"COL3","sf":"SF4559","n":"Hannibal","f":"BIB 2×4 L"},{"r":"COL2","sf":"SF4518","n":"Andalouse","f":"BIB 2×4 L"},{"r":"COL7","sf":"SF4531","n":"Ketchup","f":"BIB 2×4 L"},{"r":"COL12","sf":"SF4522","n":"Poivre","f":"BIB 2×4 L"},{"r":"COL8","sf":"SF4553N","n":"Barbecue","f":"BIB 2×4 L"},{"r":"COL1","sf":"SF4517","n":"Americaine","f":"BIB 2×4 L"},{"r":"COL11","sf":"SF4516","n":"Cocktail","f":"BIB 2×4 L"},{"r":"COL59","sf":"SF00001","n":"Mayonnaise","f":"Dosettes 500×10 ml"},{"r":"BIGCOLST","sf":"SF00067","n":"Big Burger","f":"Dosettes 500×10 ml"},{"r":"COL62","sf":"SF00064","n":"Algerienne","f":"Dosettes 500×10 ml"},{"r":"COL63","sf":"SF00031","n":"Ketchup","f":"Dosettes 500×10 ml"},{"r":"COL58","sf":"SF00019","n":"Samourai","f":"Dosettes 500×10 ml"},{"r":"COL71","sf":"SF00046","n":"Pitta","f":"Dosettes 500×10 ml"},{"r":"COL57","sf":"SF00018","n":"Andalouse","f":"Dosettes 500×10 ml"},{"r":"COL60","sf":"SF00053","n":"Barbecue","f":"Dosettes 500×10 ml"},{"r":"BBQ800","sf":"","n":"Sweet Barbecue","f":"Flacon 800 ml"},{"r":"COL47","sf":"SF5029","n":"Sauce Salade","f":"Bidon 5 L"},{"r":"CROUSTY","sf":"","n":"Sauce Crousty","f":"Sauce crousty"}];
 for(let i=IT.length-1;i>=0;i--)if(IT[i].r==='CROUSTY'||IT[i].r==='COL42')IT.splice(i,1);
@@ -173,7 +176,12 @@ function invHash(){const d=new Date(),p=n=>String(n).padStart(2,'0');const nom=(
   CAT.forEach(([f,t,w,k])=>IT.filter(i=>i.f===f&&has(i.r)).forEach(it=>{const x=st.v[it.r]||{};h+=`-${it.r}-${ri(x.p)}-${ri(x.k)}-${ri(x.c)}-${ri(x.u)}`}));
   const nt=(st.note||'').trim().slice(0,300);if(nt)h+='-note-'+[...new TextEncoder().encode(nt)].map(b=>b.toString(16).padStart(2,'0')).join('');return h}
 function linkMsg(){const n=IT.filter(i=>has(i.r)).length;const d=new Date();return `📦 Inventaire sauces Colona du ${d.toLocaleDateString('fr-FR')} à ${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}${st.nom?' par '+st.nom:''} : ${n}/${IT.length} sauces comptées.${(st.note||'').trim()?'\n📝 '+st.note.trim():''}\n👉 ${INV}#${invHash()}`}
-$('wa').addEventListener('click',()=>{refresh()});
+$('wa').addEventListener('click',async e=>{refresh();const mob=/iPhone|iPad|iPod|Android/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  if(mob&&navigator.share){e.preventDefault();try{await navigator.share({text:linkMsg()});return}catch(err){if(err&&err.name==='AbortError')return}}
+  const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);if(ios){e.preventDefault();const u=$('wa').href;try{window.top.location.href=u}catch(_){window.location.href=u}}});
+$('cl').addEventListener('click',async()=>{const b=$('cl'),lab='🔗 Copier le lien',t=linkMsg();let ok=false;try{await navigator.clipboard.writeText(t);ok=true}catch(_){}
+  if(!ok){const ta=$('msgbox');ta.hidden=false;ta.value=t;ta.focus();ta.select();try{ok=document.execCommand('copy')}catch(_){}}
+  b.textContent=ok?'✔ Copié → colle-le dans WhatsApp':'Sélectionne le texte ci-dessous et copie-le';setTimeout(()=>b.textContent=lab,3000)});
 $('fh').addEventListener('click',e=>{e.preventDefault();sendFile()});
 $('tx').addEventListener('click',e=>{e.preventDefault();waSend(message())});
 $('rz').onclick=()=>{if(confirm('Effacer tout l’inventaire pour en commencer un nouveau ?')){st.v={};st.note='';$('note').value='';save();build();refresh()}};
@@ -199,6 +207,20 @@ function loadFromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h
   const by=nom!=='x'?nom:'le magasinier';let ph=`inv-${dt}-${tm}-${nom}`;CAT.forEach(([f,tt,w,k])=>IT.filter(i=>i.f===f&&v[i.r]).forEach(it=>{ph+=`-${it.r}-${Math.round(total(it,k))}`}));
   const b=$('recv');b.hidden=false;b.innerHTML=`<b style="font-size:19px">📲 Inventaire reçu de ${by}</b><br>Du ${dt.slice(6,8)}/${dt.slice(4,6)}/${dt.slice(0,4)} à ${tm.slice(0,2)}h${tm.slice(2)} · ${Object.keys(v).length} sauces comptées. Les cases ci-dessous sont remplies avec ses chiffres.${NOTE?`<div style="margin-top:8px;background:#fff;border-radius:10px;padding:8px 10px;color:#1F1A16">📝 <b>Note :</b> ${esc(NOTE)}</div>`:''}<div style="margin-top:10px"><a class="wa" style="background:#1B2230" href="${PREV}#${ph}" target="_top">📥 Importer dans le Prévisionnel</a></div>`;
   return true}
+
+$('xl').addEventListener('click',async()=>{const b=$('xl'),lab='📊 Extraction Excel';
+  try{if(!window.XLSX)throw new Error('lib');const d=new Date();
+    const aoa=[['INVENTAIRE SAUCES COLONA'],['Date',d.toLocaleDateString('fr-FR')+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})],['Fait par',st.nom||''],['Note',(st.note||'').trim()],[],['Catégorie','Réf.','Code Colona','Sauce','Palettes','Couches','Colis','Unités','Total','Unité']];
+    let n=0;CAT.forEach(([f,tt,w,k])=>IT.filter(i=>i.f===f).forEach(it=>{const x=st.v[it.r]||{};const ok=has(it.r);if(ok)n++;
+      aoa.push([tt,it.r,it.sf||'',it.n,num(x.p)||null,num(x.k)||null,num(x.c)||null,num(x.u)||null,ok?total(it,k):'pas compté',w])}));
+    aoa.push([],['','','','Sauces comptées',n+' / '+IT.length]);
+    const ws=XLSX.utils.aoa_to_sheet(aoa);ws['!cols']=[{wch:20},{wch:10},{wch:11},{wch:20},{wch:9},{wch:9},{wch:8},{wch:8},{wch:11},{wch:9}];
+    const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Inventaire');
+    const name=`inventaire_colona_${d.toISOString().slice(0,10)}.xlsx`;const blob=new Blob([XLSX.write(wb,{bookType:'xlsx',type:'array'})],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    const dl=await (window.claude?.use?.('downloads')||Promise.resolve(null)).catch(()=>null);
+    if(dl){await dl.save({filename:name,data:blob})}else{const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
+    b.textContent='✔ Excel téléchargé'}catch(e){b.textContent='Impossible, réessaie'}
+  setTimeout(()=>b.textContent=lab,2500)});
 build();refresh();loadFromHash();window.addEventListener('hashchange',loadFromHash);
 </script>
 </body>
